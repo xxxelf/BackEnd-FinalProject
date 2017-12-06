@@ -5,7 +5,14 @@ var Board = require("../models/board-model").Board;
 
 /* GET ALL BOARDS. */
 router.get('/', function(req, res, next) {
-    res.status(200).json({ boards: "list all boards" });
+    Board.find({}, (err, result) => {
+        if (err) {
+          next(err);
+          return;
+        }
+        res.status(200).json(result);
+      });
+    
 });
 
 /* GET ONE BOARD. */
