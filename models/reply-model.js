@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-const threadSchema = new Schema({
-  id: Number,
-  
+const replySchema = new Schema({
   boardId: {
     type: ObjectId,
     ref: 'Board'
@@ -15,9 +13,6 @@ const threadSchema = new Schema({
   },
   postNo: Number,
   content: String,
-  timestamps: {
-    createdAt: "created_at",
-  }
 });
 
 const Reply = mongoose.model('Reply', replySchema);

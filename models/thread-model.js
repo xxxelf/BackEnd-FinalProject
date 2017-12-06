@@ -9,13 +9,10 @@ const threadSchema = new Schema({
   },
   postNo: Number,
   content: String,
-  timestamps: {
-      createdAt: "created_at",
-  }
-  
-
 });
 
 const Thread = mongoose.model('Thread', threadSchema);
 
-module.exports = Thread;
+module.exports = {
+  Thread
+}

@@ -5,35 +5,40 @@ mongoose.connect("mongodb://localhost/board", {useMOngoClient: true});
 const boards = [
   {
     name: "Random",
-    currentNumber: 0,
-    path: "b"
+    currentNumber: 5,
+    boardPath: "b"
   },
   {
     name: "Politics",
     currentNumber: 0,
-    path: "pol"
+    boardPath: "pol"
   },
   {
     name: "Sports",
     currentNumber: 0,
-    path: "sp"
+    boardPath: "sp"
   },
   {
     name: "Music",
-    currentNumber: 0,
-    path: "mu"
+    currentNumber: 5,
+    boardPath: "mu"
   },
   {
     name: "Video Games",
     currentNumber: 0,
-    path: "v"
+    boardPath: "v"
   },
   
 ];
 
-Board.create(boards, (err, boards) => {
-  if (err) { throw (err); }
-  console.log("Success", boards);
-  mongoose.connection.close();
-})
-;
+// Delete all the boards
+Board.remove({}).then(() => {
+    
+  // create all the boards again
+  Board.create(boards, (err, boards) => {
+    if (err) { throw (err); }
+    console.log("Success", boards);
+    mongoose.connection.close();
+  });
+
+});
